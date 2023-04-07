@@ -7,7 +7,6 @@ module.exports.list = (req, res, next) => {
 }
 
 module.exports.create = (req, res, next) => {
-  console.log(req.body)
   Project.create(req.body)
     .then((project) => res.status(201).json(project))
     .catch(next)

@@ -36,7 +36,17 @@ const projectSchema = new Schema({
       message: "Not a valid image url"
     }
   }
-}, { timestamps: true })
+}, { 
+  timestamps: true,
+  toJSON: {
+    transform: function (doc, ret) {
+      delete ret.__v;
+      ret.id = ret._id;
+      delete ret._id
+      return ret;
+    }
+  } 
+})
 
 const Project = mongoose.model('Project', projectSchema);
 module.exports = Project
