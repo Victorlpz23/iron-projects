@@ -1,7 +1,7 @@
 
 module.exports.isValidUrl = (url) => {
   try {
-    new Url(url);
+    new URL(url);
     return true;
   } catch (error) {
     return false

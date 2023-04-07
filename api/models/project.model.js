@@ -22,6 +22,7 @@ const projectSchema = new Schema({
   tags: [String],
   githubUrl: {
     type: String,
+    required: 'Project GitHub is required',
     validate: {
       validator: isValidUrl,
       message: "Not a valid GitHub url"
@@ -29,6 +30,7 @@ const projectSchema = new Schema({
   },
   imageUrl: {
     type: String,
+    required: 'Project image url is required',
     validate: {
       validator: isValidUrl,
       message: "Not a valid image url"
