@@ -28,7 +28,8 @@ app.use((error, req, res, next) => {
   if (error instanceof mongoose.Error.ValidationError) {
     error = createError(400, error)
   } else if (error instanceof mongoose.Error.CastError && error.path === '_id') {
-    error = createError(404, 'Resource not found');
+    const resourceName = error.model().constructor.modelName;
+    error = createError(404, `${resourceName} not found`);
   } else if (!error.status) {
     error = createError(500, error);
   }
