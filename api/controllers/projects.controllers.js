@@ -11,3 +11,9 @@ module.exports.create = (req, res, next) => {
     .then((project) => res.status(201).json(project))
     .catch(next)
 }
+
+module.exports.detail = (req, res, next) => {
+  Project.findById(req.params.id)
+    .then((project) => res.json(project))
+    .catch(next)
+}
