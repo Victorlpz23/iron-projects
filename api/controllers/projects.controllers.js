@@ -1,5 +1,6 @@
 const Project = require('../models/project.model');
 
+
 module.exports.list = (req, res, next) => {
   Project.find()
     .then((projects) => res.json(projects))
@@ -12,8 +13,20 @@ module.exports.create = (req, res, next) => {
     .catch(next)
 }
 
-module.exports.detail = (req, res, next) => {
-  Project.findById(req.params.id)
-    .then((project) => res.json(project))
+module.exports.detail = (req, res, next) => res.json(req.project)
+
+
+module.exports.delete = (req, res, next) => {
+  Project.deleteOne({ _id: req.project.id })
+    .then(() => res.status(204).send())
     .catch(next)
 }
+
+
+module.exports.update = (req, res, next) => {
+  Object.assign(req.project, req.body)
+  req.project
+    .save()
+    .then((project) => res.json(project))
+    .catch(next)
+};
