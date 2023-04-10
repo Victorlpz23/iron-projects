@@ -3,6 +3,7 @@ const Student = require('../models/student.model');
 
 module.exports.list = (req, res, next) => {
   Student.find()
+    .populate("projects")
     .then((students) => res.json(students))
     .catch(next)
 }

@@ -3,6 +3,7 @@ const Project = require('../models/project.model');
 
 module.exports.list = (req, res, next) => {
   Project.find()
+    .populate('comments')
     .then((projects) => res.json(projects))
     .catch(next)
 }

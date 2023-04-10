@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-// const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const Schema = mongoose.Schema;
 
 const studentSchema = new Schema(
@@ -68,7 +68,6 @@ const studentSchema = new Schema(
     cohort: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Cohort",
-      required: "Student cohort is required",
     },
   },
   {
