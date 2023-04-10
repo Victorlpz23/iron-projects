@@ -1,7 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const projects = require('../controllers/projects.controllers');
+const students = require('../controllers/students.controller');
 const projectsMid = require('../middlewares/projects.mid');
+const studentsMid = require('../middlewares/students.mid');
+
 
 const todo = (req, res, next) => {
   res.send("TODO")
@@ -21,11 +24,11 @@ router.patch('/projects/:id/comment/:commentId', projectsMid.exists, todo);
 router.delete('/projects/:id/comment/:commentId', projectsMid.exists, todo);
 
 
-router.get('/students', todo);
-router.post('/students', todo);
-router.get('/students/:id', todo);
-router.patch('/students/:id', todo);
-router.delete('/students/:id', todo);
+router.get('/students', students.list);
+router.post('/students', students.create);
+router.get('/students/:id', studentsMid.exists, students.detail);
+router.patch('/students/:id', studentsMid.exists, students.update);
+router.delete('/students/:id', studentsMid.exists, students.delete);
 
 
 router.get('/cohorts', todo);
