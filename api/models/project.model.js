@@ -15,10 +15,7 @@ const projectSchema = new Schema({
     required: 'Project description is required',
     minlength: [10, 'Project description at least 10 chars']
   },
-  authors: [{
-    type: String,
-    minlength: [2, 'Project author needs at least 2 chars']
-  }],
+
   tags: [String],
   githubUrl: {
     type: String,
@@ -35,8 +32,17 @@ const projectSchema = new Schema({
       validator: isValidUrl,
       message: "Not a valid image url"
     }
-  }
-}, { 
+  },
+  module: {
+    type: Number,
+    enum: [1, 2, 3],
+    required: 'Project module is required',
+  },
+  authors: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Student",
+  }],
+}, {
   timestamps: true,
   toJSON: {
     virtuals: true,
@@ -46,8 +52,25 @@ const projectSchema = new Schema({
       delete ret._id
       return ret;
     }
-  } 
-})
+  }
+}
+);
+
+projectSchema.virtual("comments", {
+  ref: "Comment",
+  localField: "_id",
+  foreignField: "project",
+  justOne: false,
+});
+
+projectSchema.virtual("likes", {
+  ref: "Like",
+  localField: "_id",
+  foreignField: "like",
+  justOne: false,
+});
+
+
 
 const Project = mongoose.model('Project', projectSchema);
 module.exports = Project
