@@ -8,13 +8,20 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-transporter
-  .sendMail({
-    from: "Ironhacker <victorlpz2301@gmail.com>",
-    to: "victorlpz2301@gmail.com",
-    subject: "test",
-    text: "¿Por qué los programadores en React siempre parecen tan tranquilos y relajados?Porque siempre están en un estado de ¡Relax! (porque en React, el estado es una propiedad importante de los componentes)",
-    html: "<p>¿Por qué los programadores en React siempre parecen tan tranquilos y relajados?Porque siempre están en un estado de ¡Relax! (porque en React, el estado es una propiedad importante de los componentes) <p> "
-  })
-  .then((info) => console.log(info))
-  .catch((error) => console.log(error))
+module.exports.sendConfirmationEmail = (student) => {
+  transporter
+    .sendMail({
+      from: "Ironhacker <victorlpz2301@gmail.com>",
+      to: student.email,
+      subject: "Confirm your account",
+      html: `
+      <h1>Welcome to Iron Projects"</h1>
+      <p>Click on the following link to confirm your account:</p>
+      <a href="${process.env.API_URL}/students/${student.id}/confirm">Confirm</a>
+    `
+      ,
+    })
+    .then((info) => console.log(info))
+    .catch((error) => console.log(error))
+}
+

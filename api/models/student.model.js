@@ -16,7 +16,7 @@ const studentSchema = new Schema(
     },
     confirm: {
       type: Boolean,
-      default: false,
+      default: true,
     },
     username: {
       type: String,
