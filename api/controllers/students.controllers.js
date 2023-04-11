@@ -1,5 +1,7 @@
 const Student = require('../models/student.model');
-const mailer = require('../config/mailer.config')
+const mailer = require('../config/mailer.config');
+const createError = require('http-errors');
+const jwt = require('jsonwebtoken')
 
 
 module.exports.list = (req, res, next) => {
@@ -22,7 +24,7 @@ module.exports.detail = (req, res, next) => res.json(req.student)
 
 
 module.exports.delete = (req, res, next) => {
-  Student.deleteOne({ _id: req.student.id })
+  Student.deleteOne({ _id: req.user.id })
     .then(() => res.status(204).send())
     .catch(next)
 }
@@ -47,4 +49,30 @@ module.exports.confirm = (req, res, next) => {
       res.redirect(`${process.env.WEB_URL}/login`);
     })
     .catch(next);
+};
+
+
+module.exports.login = (req, res, next) => {
+  Student.findOne({ username: req.body.username })
+    .then((student) => {
+      if (!student) {
+        return next(createError(401, "Invalid credentials"));
+      }
+
+      if (!student.confirm) {
+        return next(createError(401, "Please confirm your account"));
+      }
+
+      student.checkPassword(req.body.password).then((match) => {
+        if (!match) {
+          return next(createError(401, "Invalid credentials"));
+        }
+
+        const token = jwt.sign({ sub: student.id, exp: Date.now() / 1000 + 3600 }, 
+        "supersecret" 
+        );
+        res.json({ token })
+      });
+    })
+    .catch(next)
 };

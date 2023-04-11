@@ -8,6 +8,7 @@ const likes = require('../controllers/likes.controllers');
 const projectsMid = require('../middlewares/projects.mid');
 const studentsMid = require('../middlewares/students.mid');
 const commentsMid = require('../middlewares/comments.mid');
+const secure = require('../middlewares/secure.mid');
 
 
 
@@ -34,10 +35,13 @@ router.post('/students', students.create);
 router.get('/students/:id', studentsMid.exists, students.detail);
 router.get('/students/:id/confirm', studentsMid.exists, students.confirm);
 router.patch('/students/:id', studentsMid.exists, students.update);
-router.delete('/students/:id', studentsMid.exists, students.delete);
+router.delete('/students/:id', secure.auth, students.delete);
 
+router.post('/login', students.login);
 
 router.get('/cohorts', todo);
 router.get('/cohorts/:id', todo);
+
+
 
 module.exports = router
