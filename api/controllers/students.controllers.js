@@ -24,6 +24,10 @@ module.exports.detail = (req, res, next) => res.json(req.student)
 
 
 module.exports.delete = (req, res, next) => {
+  if (req.user.id !== req.params.id) {
+    return next(createError(403, "Forbidden"));
+  }
+
   Student.deleteOne({ _id: req.user.id })
     .then(() => res.status(204).send())
     .catch(next)
@@ -31,7 +35,9 @@ module.exports.delete = (req, res, next) => {
 
 
 module.exports.update = (req, res, next) => {
-  delete req.body.confirm;
+  if (req.user.id !== req.params.id) {
+    return next(createError(403, "Forbidden"));
+  }
 
   Object.assign(req.student, req.body)
   req.student
@@ -69,7 +75,7 @@ module.exports.login = (req, res, next) => {
         }
 
         const token = jwt.sign({ sub: student.id, exp: Date.now() / 1000 + 3600 }, 
-        "supersecret" 
+        process.env.JWT_SECRET 
         );
         res.json({ token })
       });

@@ -24,7 +24,7 @@ module.exports.auth = (req, res, next) => {
   }
 
   try {
-    const decoded = jwt.verify(token, "supersecret");
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
     Student.findById(decoded.sub)
       .then((student) => {

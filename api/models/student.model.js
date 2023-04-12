@@ -68,6 +68,7 @@ const studentSchema = new Schema(
     cohort: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Cohort",
+      required: "Student cohort is required",
     },
   },
   {
