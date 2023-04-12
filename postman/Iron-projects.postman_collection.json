@@ -10,6 +10,59 @@
 			"name": "Projects",
 			"item": [
 				{
+					"name": "Comments",
+					"item": [
+						{
+							"name": "Comment",
+							"request": {
+								"method": "POST",
+								"header": []
+							},
+							"response": []
+						},
+						{
+							"name": "Comment",
+							"request": {
+								"method": "PATCH",
+								"header": []
+							},
+							"response": []
+						},
+						{
+							"name": "Comment",
+							"request": {
+								"method": "DELETE",
+								"header": []
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Likes",
+					"item": [
+						{
+							"name": "Like",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_API_URL}}/projects/643276c0a0e409a95a7eeeb2/like",
+									"host": [
+										"{{BASE_API_URL}}"
+									],
+									"path": [
+										"projects",
+										"643276c0a0e409a95a7eeeb2",
+										"like"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
 					"name": "Projects",
 					"request": {
 						"method": "GET",
@@ -58,7 +111,12 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"title\": \"pruebas lalalalaooaoaoalla\"\n}"
+							"raw": "{\n    \"title\": \"lalalalaooaoaoalla\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
 						},
 						"url": {
 							"raw": "{{BASE_API_URL}}/projects/643276c0a0e409a95a7eeeb2",
@@ -111,6 +169,169 @@
 							],
 							"path": [
 								"projects"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Students",
+			"item": [
+				{
+					"name": "Students",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_API_URL}}/students",
+							"host": [
+								"{{BASE_API_URL}}"
+							],
+							"path": [
+								"students"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Confirm",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_API_URL}}/students",
+							"host": [
+								"{{BASE_API_URL}}"
+							],
+							"path": [
+								"students"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Student",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_API_URL}}/students",
+							"host": [
+								"{{BASE_API_URL}}"
+							],
+							"path": [
+								"students"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_API_URL}}/login",
+							"host": [
+								"{{BASE_API_URL}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Student",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_API_URL}}/students",
+							"host": [
+								"{{BASE_API_URL}}"
+							],
+							"path": [
+								"students"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Student",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_API_URL}}/students",
+							"host": [
+								"{{BASE_API_URL}}"
+							],
+							"path": [
+								"students"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Student",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_API_URL}}/students",
+							"host": [
+								"{{BASE_API_URL}}"
+							],
+							"path": [
+								"students"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cohorts",
+			"item": [
+				{
+					"name": "Cohorts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_API_URL}}/cohorts",
+							"host": [
+								"{{BASE_API_URL}}"
+							],
+							"path": [
+								"cohorts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cohort",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_API_URL}}/cohorts",
+							"host": [
+								"{{BASE_API_URL}}"
+							],
+							"path": [
+								"cohorts"
 							]
 						}
 					},
