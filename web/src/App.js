@@ -1,10 +1,12 @@
-import ProjectsList from "./components/projects/projects-list/ProjectsList";
+import StudentsForm from "./components/students/students-form/StudentsForm";
 
 
 function App() {
   return (
     <>
-      <ProjectsList />
+   <div className="container mt-5">
+       <StudentsForm />
+   </div>
     </>
   );
 }
